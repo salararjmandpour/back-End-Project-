@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&dispaly=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+}
+
+.wrapper {
+    display: inline-block;
+    width: 390px;
+    margin: 0 auto;
+    background-color: rgb(247, 241, 241);
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px #5709967e;
+
+}
+
+.cell {
+    width: 90px;
+    height: 90px;
+    margin: 10px;
+    border-radius: 10px;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    line-height: 90px;
+    font-size: 40px;
+    color: #dedede;
+    box-shadow: 2px 2px 5px   #5709967e;
+    border-radius: 50%;
+;
+}
+
+#info {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    float: left;
+    padding: 15px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    
+}
+
+.cell.O {
+    background-color: #4586f4;
+    border-radius: 50%;
+}
+
+.cell.O::after {
+    content: "O";
+   
+}
+
+.cell.X {
+    background-color: #e74140;
+    border-radius: 50%;
+}
+
+.cell.X::after {
+    content: "X";
+    
+}
+
+button {
+    background-color: #560996;
+    outline: none;
+    border: none;
+    color: #fff;
+    display: block;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 8px;
+    box-shadow: 2px 2px 5px  #0000007e;
+
+}
