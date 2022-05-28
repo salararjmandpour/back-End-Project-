@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="/style/styles.css">
+<link rel="icon" type="image/x-icon" href="/image/favicon.ico">
+<head>
+    <title>{{title}}</title>
+
+</head>
+
+<body>
+
+    <dir class="content">
+
+        {{> header}}
+
+
+        <p>{{content}}</p>
+
+        <form>
+            <input placeholder="Location">
+            <button>Search</button>
+        </form>
+        <p id="location"></p>
+        <p id="temperature"></p>
+        <img id="icon" src="" alt="">
+    </dir>
+    
+</body>
+<footer>
+{{> footer}}
+</footer>
+<script src="/js/script.js"></script>
+</html>
