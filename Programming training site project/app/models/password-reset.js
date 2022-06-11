@@ -8,11 +8,11 @@ const uniqueString = require('unique-string');
 const passwordReset = mongoose.Schema({
     email: {
         type: String,
-        require: true
+        required: true
     },
     token: {
         type: String,
-        require: true
+        required: true
     },
     use: {
         type: Boolean,

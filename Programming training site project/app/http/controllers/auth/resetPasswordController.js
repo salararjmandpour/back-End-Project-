@@ -32,8 +32,7 @@ class resetPasswordController extends controller {
 
             if (result) {
 
-                req.flash('formData', req.body); // set and save data user in field
-                return res.redirect('/auth/password/reset/' + req.body.token);
+                return this.back(req, res); // set and save data user in field
 
             }
 
@@ -74,8 +73,7 @@ class resetPasswordController extends controller {
         // return console.log("test");
         return res.redirect('/auth/login');
 
-        // req.flash('success', 'ایمیل بازیابی رمز عبور با موفقیت ارسال شد');
-        // res.redirect('/');
+        
 
     }
 

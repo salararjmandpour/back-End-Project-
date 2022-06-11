@@ -9,6 +9,6 @@ module.exports={
     secret: process.env.SESSION_SECRET_KEY,
     resave: true,
     saveUninitialized: true,
-    cookie: { expires: new Date(Date.now() + 50000) },
+    cookie: { expires: new Date(Date.now() + 500000) },
     store: MongoStore.create({ mongoUrl: "mongodb://127.0.0.1:27017/nodejscms" })
 }

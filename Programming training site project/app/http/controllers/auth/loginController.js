@@ -21,8 +21,8 @@ class loginController extends controller {
             
             if (result) {
 
-                req.flash('formData', req.body); // set and save data user in field
-                return res.redirect('/auth/login');
+                return this.back(req, res); // set and save data user in field
+                
             }
 
             return this.login(req, res, next);
@@ -31,7 +31,7 @@ class loginController extends controller {
 
     }
 
-    //>----------------------  creat method login for checking email and password
+    //>---------------------- create method login for checking email and password
 
     login(req, res, next) {
         

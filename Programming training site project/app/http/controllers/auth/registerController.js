@@ -23,9 +23,8 @@ class registerController extends controller {
             
             if (result) {
 
-                req.flash('formData', req.body); // set and save data user in field
-                return res.redirect('/auth/register');
-           
+                return this.back(req, res); // set and save data user in field
+                
             }
 
             return this.register(req, res, next);
@@ -34,7 +33,7 @@ class registerController extends controller {
    
     }
 
-    //>----------------------  creat method register for checking email and password
+    //>----------------------  create method register for checking email and password
     register(req, res, next) {
 
         passport.authenticate('local.register', {

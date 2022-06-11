@@ -3,12 +3,12 @@ const bcrypt = require('bcrypt');
 const uniqueString = require('unique-string');
 
 
-//>----------------------- creat model of user
+//>----------------------- create model of user
 
 const userSchema = mongoose.Schema({
     name: {
         type: String,
-        require: true
+        required: true
     },
     admin: {
         type: Boolean,
@@ -16,12 +16,12 @@ const userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     password: {
         type: String,
-        require: true
+        required: true
     },
     rememberToken: {
         type: String,

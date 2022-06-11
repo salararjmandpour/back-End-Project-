@@ -24,8 +24,7 @@ class forgotPasswordController extends controller {
             let result = await this.validationData(req);
             if (result) {
 
-                req.flash('formData', req.body); // set and save data user in field
-                return res.redirect('/auth/password/reset');
+                return this.back(req, res); // set and save data user in field
             }
 
             return this.sendResetLink(req, res, next);

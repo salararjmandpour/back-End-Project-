@@ -35,11 +35,11 @@ module.exports = class controller {
         })
     }
 
-    //>---------------------- method validationData login
+    //>---------------------- method validationData login and Register
 
     async validationData(req) {
 
-        const result = validationResult(req);
+        const result = await validationResult(req);
         if (!result.isEmpty()) {
 
             const errors = result.array();
@@ -54,8 +54,10 @@ module.exports = class controller {
 
     }
 
-    //>---------------------- creat method for redirect error back to page 
+    //>---------------------- create method for redirect error back to page 
     back(req, res) {
+
+        req.flash('formData', req.body);
         return res.redirect(req.header('Referer') || '/');
     }
 

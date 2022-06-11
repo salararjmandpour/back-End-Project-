@@ -3,13 +3,13 @@ const localStrategy = require('passport-local').Strategy;
 const User = require('app/models/user');
 
 
-//>----------------------- creat serialize User by Id
+//>----------------------- create serialize User by Id
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
   });
 
-//>----------------------- creat deserialize User by Id
+//>----------------------- create deserialize User by Id
 
   passport.deserializeUser(function(id, done) {
     User.findById(id, function (err, user) {
@@ -17,7 +17,7 @@ passport.serializeUser(function(user, done) {
     });
   });
 
-//>----------------------- creat customize Strategy for register
+//>----------------------- create customize Strategy for register
 
 passport.use('local.register', new localStrategy({
     usernameField: 'email',
@@ -44,7 +44,7 @@ passport.use('local.register', new localStrategy({
     });
 }));
 
-//>----------------------- creat customize Strategy for login
+//>----------------------- create customize Strategy for login
 
 passport.use('local.login', new localStrategy({
   usernameField: 'email',

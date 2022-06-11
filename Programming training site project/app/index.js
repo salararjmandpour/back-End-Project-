@@ -16,20 +16,22 @@ const rememberLogin = require('app/http/middleware/rememberLogin');
 //>----------------------module export
 
 module.exports = class Application {
+
     constructor() {
+
         this.setupExpress(); //set setup express.JS
         this.setMongoConnection(); //set mongoDB connection
         this.setConfig(); //set config project
         this.setConfigMorgan(); //set config PG morgan
         this.setRouter(); //set router app
+
     }
 
     //>-------------------- method setup express
 
     setupExpress() {
 
-        const server = http.createServer(app);
-        server.listen(config.port, () => {
+        app.listen(config.port, () => {
             console.log(chalk.bgCyan(`Listening on port ${config.port}`));
         });
 
@@ -38,8 +40,7 @@ module.exports = class Application {
     //>---------------------- set mongoDB connection
 
     setMongoConnection() {
-
-        mongoose.Promise = global.Promise;
+ 
         mongoose.connect(config.database.url);
 
     }
@@ -54,12 +55,14 @@ module.exports = class Application {
     //>---------------------- set config PG morgan
 
     setConfigMorgan() {
+
         const log = (req, res, next) => {
             console.log(chalk.bgBlue("Logging routes" + req.originalUrl));
             next();
         }
         app.use(log);
         app.use(morgan("dev"));
+
     }
 
     //>---------------------- method set config express
@@ -87,11 +90,13 @@ module.exports = class Application {
         app.use(passPort.session());
         app.use(rememberLogin.handle);
 
-        //>--------------------- creat middleware for checking the login user
+        //>--------------------- create middleware for checking the login user
 
         app.use((req, res, next) => {
+
             app.locals = new helpers(req, res).getObjects();
             next();
+            
         });
 
 
