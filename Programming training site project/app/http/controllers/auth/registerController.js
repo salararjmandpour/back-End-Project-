@@ -6,42 +6,24 @@ const passport = require('passport');
 class registerController extends controller {
 
     showRegisterForm(req, res) {
-       
-        const title = 'صفحه عضویت';
-        res.render('home/auth/register', { recaptcha: this.recaptcha.render(), title});
-   
+        res.render('auth/register', { errors: req.flash('errors'), recaptcha: this.recaptcha.render() });
     }
 
     //>---------------------- method Post register
 
-    async registerProcess(req, res, next) {
-
-        try {
-
-            await this.recaptchaValidation(req, res);
-            let result = await this.validationData(req);
-            
-            if (result) {
-
-                return this.back(req, res); // set and save data user in field
-                
-            }
-
-            return this.register(req, res, next);
-
-        } catch (error) { console.log(error); }
-   
+    registerProcess(req, res, next) {
+        this.recaptchaValidation(req, res)
+            .then(result => this.validationData(req))
+            .then(result => result ? res.redirect('/register') : this.register(req, res, next)).catch(error => console.log(error));
     }
 
-    //>----------------------  create method register for checking email and password
+    //>----------------------  creat method register for checking email and password
     register(req, res, next) {
-
-        passport.authenticate('local.register', {
-           
-            successRedirect: '/',
-            failureRedirect: '/auth/register',
-            failureFlash: true
         
+        passport.authenticate('local.register', {
+            successRedirect: '/',
+            failureRedirect: '/register',
+            failureFlash: true
         })(req, res, next);
     }
 }

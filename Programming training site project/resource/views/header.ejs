@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><%- defineContent('title') || "مجله آموزشی" %> </title>
-    <link rel="icon" type="image/x-icon/png" href="/resource/views/home/image/favicon.ico">
+    <title>مجله آموزشی </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     
@@ -12,13 +11,12 @@
     <link rel="stylesheet" href="/css/bootstrap-rtl.min.css" />    
     <link rel="stylesheet" href="/css/vazir.css">
     <link rel="stylesheet" href="/css/home.css">
-    <%- style %>
 </head>
 <body>
     
     <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
         <div class="container">
-            <a class="navbar-brand" href="/">مجله آموزشی </a>
+            <a class="navbar-brand" href="#">مجله آموزشی </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -44,23 +42,11 @@
 
                   <% } else { %>
 
-                    <li><a class="btn btn-success btn-sm ml-2" href="/auth/login">ورود</a></li>
-                    <li><a class="btn btn-primary btn-sm" href="/auth/register">عضویت</a></li>                
+                    <li><a class="btn btn-success btn-sm ml-2" href="/login">ورود</a></li>
+                    <li><a class="btn btn-primary btn-sm" href="/register">عضویت</a></li>                
                     
                 <% } %>
               </ul>
             </div>
         </div>
       </nav>
- 
-      <div class="caontainer">
-        <%- body %>
-
-      </div>
-
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <%- script %>
-  </body>
-  </html>

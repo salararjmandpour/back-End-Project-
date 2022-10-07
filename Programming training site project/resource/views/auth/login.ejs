@@ -1,6 +1,6 @@
+<%- include('./../header'); -%>
 
-
-
+    <div class="container">
         <div class="row pt-5 justify-content-center">
             <div class="col-8">
                 <div class="card card-default">
@@ -8,18 +8,18 @@
                         <h5>ورود به سایت</h5>
                     </div>
                     <div class="card-body">
-                        <form class="form-horizontal" method="POST" action="/auth/login" novalidate="">
+                        <form class="form-horizontal" method="POST" action="/login" novalidate="">
 
-                           <%- include(viewPath('layout/error-message.ejs')) -%>
+                           <%- include('./../layout/error-message.ejs') -%>
                                 <div class="form-group">
                                     <label for="email" class="control-label">آدرس ایمیل</label>
-                                    <input id="email" type="email" class="form-control" name="email" value="<%= old('email') %>"
+                                    <input id="email" type="email" class="form-control" name="email" value=""
                                         required autofocus="">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="password" class="control-label">پسورد</label>
-                                    <input id="password" type="password" class="form-control" name="password" value="<%= old('password') %>"
+                                    <input id="password" type="password" class="form-control" name="password"
                                         required="">
                                 </div>
 
@@ -38,14 +38,14 @@
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">ورود</button>
-                                    <a href="/auth/google" class="btn btn-danger">ورود با اکانت گوگل</a>
-                                    <a class="btn btn-link" href="/auth/password/reset">رمز عبور را فرامش کردم !</a>
+                                    <a href="/login/google" class="btn btn-danger">ورود با اکانت گوگل</a>
+                                    <a class="btn btn-link" href="#">رمز عبور را فرامش کردم !</a>
                                 </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
- 
+    </div>
 
- 
+    <%- include('./../footer'); -%>

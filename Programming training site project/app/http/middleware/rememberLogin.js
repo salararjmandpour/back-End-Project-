@@ -4,7 +4,7 @@ const middleware = require("./middleware");
 
 class rememberLogin extends middleware {
 
-    //>----------------------- create remember token 
+    //>----------------------- creat remember token 
 
     handle(req, res, next) {
         if (!req.isAuthenticated()) {
