@@ -6,22 +6,38 @@ const { validationResult } = require('express-validator/check');
 
 class loginController extends controller {
     showLoginForm(req, res) {
-        res.render('auth/login', { errors: req.flash('errors'), recaptcha: this.recaptcha.render() });
+        const title = 'صفحه ورود';
+        res.render('home/auth/login', { recaptcha: this.recaptcha.render(), title });
     }
 
     //>---------------------- method Post login
 
-    loginProcess(req, res, next) {
-        this.recaptchaValidation(req, res)
-            .then(result => this.validationData(req))
-            .then(result => result ? res.redirect('/login') : this.login(req, res, next)).catch(error => console.log(error));
+    async loginProcess(req, res, next) {
+
+        try {
+
+            await this.recaptchaValidation(req, res);
+            let result = await this.validationData(req);
+            
+            if (result) {
+
+                return this.back(req, res); // set and save data user in field
+                
+            }
+
+            return this.login(req, res, next);
+
+        } catch (error) { console.log(error); }
+
     }
 
-    //>----------------------  creat method login for checking email and password
+    //>---------------------- create method login for checking email and password
 
     login(req, res, next) {
+        
         passport.authenticate('local.login', (err, user) => {
-            if (!user) return res.redirect('/login');
+            
+            if (!user) return res.redirect('/auth/login');
 
             req.logIn(user, err => {
 
@@ -29,8 +45,10 @@ class loginController extends controller {
                     //>--------- set token
                     user.setRememberToken(res);
                 }
+                
                 return res.redirect('/')
-            })
+            
+            });
 
         })(req, res, next);
     }

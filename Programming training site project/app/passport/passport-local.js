@@ -3,13 +3,13 @@ const localStrategy = require('passport-local').Strategy;
 const User = require('app/models/user');
 
 
-//>----------------------- creat serialize User by Id
+//>----------------------- create serialize User by Id
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
   });
 
-//>----------------------- creat deserialize User by Id
+//>----------------------- create deserialize User by Id
 
   passport.deserializeUser(function(id, done) {
     User.findById(id, function (err, user) {
@@ -17,14 +17,14 @@ passport.serializeUser(function(user, done) {
     });
   });
 
-//>----------------------- creat customize Strategy for register
+//>----------------------- create customize Strategy for register
 
 passport.use('local.register', new localStrategy({
     usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true
 }, (req, email, password, done) => {
-    console.log(email, password);
+    // console.log(email, password);
     User.findOne({ 'email': email }, (err, user) => {
         if (err) return done(err);
         if (user) return done(null, false, req.flash('errors', 'چنین کاربری قبلا در سایت ثبت نام کرده است'));
@@ -40,11 +40,11 @@ passport.use('local.register', new localStrategy({
             if (err) return done(err, false, req.flash('errors', 'ثبت نام با موفقعیت انجام نشد مجدد تلاش کنید'));
             done(null, newUser);
         })
-        console.log(err, user);
+        // console.log(err, user);
     });
 }));
 
-//>----------------------- creat customize Strategy for login
+//>----------------------- create customize Strategy for login
 
 passport.use('local.login', new localStrategy({
   usernameField: 'email',

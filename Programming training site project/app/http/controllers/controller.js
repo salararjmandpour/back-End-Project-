@@ -1,3 +1,4 @@
+const chalk = require('chalk');
 const autoBind = require("auto-bind");
 const Recaptcha = require('express-recaptcha').RecaptchaV2
 const { validationResult } = require('express-validator/check');
@@ -24,8 +25,9 @@ module.exports = class controller {
         return new Promise((resolve, reject) => {
             this.recaptcha.verify(req, (err, data) => {
                 if (err) {
+                    req.flash('formData', req.body); // set and save data user in field
                     req.flash('errors', 'گزینه امنیتی مربوط به شناسایی ربات خاموش است، لطفا از فعال آن اطمینان حاصل نمایید و مجدد امتحان کنید ');
-                    res.redirect(req.url);
+                    this.back(req, res);
                 } else {
                     resolve(true);
                 }
@@ -33,11 +35,11 @@ module.exports = class controller {
         })
     }
 
-    //>---------------------- method validationData login
+    //>---------------------- method validationData login and Register
 
     async validationData(req) {
 
-        const result = validationResult(req);
+        const result = await validationResult(req);
         if (!result.isEmpty()) {
 
             const errors = result.array();
@@ -50,6 +52,13 @@ module.exports = class controller {
 
         return false;
 
+    }
+
+    //>---------------------- create method for redirect error back to page 
+    back(req, res) {
+
+        req.flash('formData', req.body);
+        return res.redirect(req.header('Referer') || '/');
     }
 
 

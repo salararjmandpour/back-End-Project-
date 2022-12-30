@@ -3,12 +3,12 @@ const bcrypt = require('bcrypt');
 const uniqueString = require('unique-string');
 
 
-//>----------------------- creat model of user
+//>----------------------- create model of user
 
 const userSchema = mongoose.Schema({
     name: {
         type: String,
-        require: true
+        required: true
     },
     admin: {
         type: Boolean,
@@ -16,12 +16,12 @@ const userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     password: {
         type: String,
-        require: true
+        required: true
     },
     rememberToken: {
         type: String,
@@ -34,6 +34,13 @@ const userSchema = mongoose.Schema({
 
 userSchema.pre('save', async function (next) {
     if (this.isModified("password")) this.password = await bcrypt.hash(this.password, 10);
+    next();
+});
+//>------------------------ Generate a hashed password reset password
+
+userSchema.pre('findOneAndUpdate', function (next) {
+
+    this.getUpdate().$set.password = bcrypt.hashSync(this.getUpdate().$set.password, 10);
     next();
 });
 
